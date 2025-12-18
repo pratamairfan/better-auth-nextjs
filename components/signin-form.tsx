@@ -28,6 +28,7 @@ import { toast } from "sonner";
 import { authClient } from "@/lib/auth-client";
 import { Badge } from "./ui/badge";
 import { Loader2 } from "lucide-react";
+import { signIn } from "@/server/user";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -60,14 +61,14 @@ export function SigninForm({
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
 
-    // const {success, message} = await signIn(values.email, values.password)
+    const { success, message } = await signIn(values.email, values.password);
 
-    // if (success) {
-    //   toast.success(message as string)
-    //   router.push("/dashboard")
-    // } else {
-    //   toast.error(message as string)
-    // }
+    if (success) {
+      toast.success(message as string);
+      router.push("/dashboard");
+    } else {
+      toast.error(message as string);
+    }
   }
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -78,7 +79,7 @@ export function SigninForm({
             Login with your Apple or Google account
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-4">
           <div className="flex flex-col gap-4">
             <Button
               className="relative w-full cursor-pointer"
@@ -124,21 +125,21 @@ export function SigninForm({
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>
-                      Password{" "}
-                      <Link
-                        className="ml-auto text-sm underline-offset-4 hover:underline"
-                        href="/forgot-password"
-                      >
-                        Forgot your password?
-                      </Link>
-                    </FormLabel>
+                    <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="Enter your password"
-                        type="password"
-                        {...field}
-                      />
+                      <div className="flex flex-col gap-3 items-end">
+                        <Input
+                          placeholder="Enter your password"
+                          type="password"
+                          {...field}
+                        />
+                        <Link
+                          className="text-sm underline-offset-4 hover:underline hover:text-primary"
+                          href="/forgot-password"
+                        >
+                          Forgot your password?
+                        </Link>
+                      </div>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -160,7 +161,7 @@ export function SigninForm({
               <div className="text-center text-sm">
                 Don&apos;t have an account?{" "}
                 <Link
-                  className="underline underline-offset-4"
+                  className="underline underline-offset-4 hover:text-primary"
                   href="/auth/sign-up"
                 >
                   Sign up

@@ -18,7 +18,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { auth } from "@/lib/auth";
-import { signOut } from "@/lib/auth-client";
+import { signOut } from "@/server/user";
 import { useRouter } from "next/navigation";
 
 type Session = typeof auth.$Infer.Session;
