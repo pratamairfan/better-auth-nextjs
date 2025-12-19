@@ -92,8 +92,8 @@ export default function DashboardClientPage({ session }: { session: Session }) {
             {/* Demo Features */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-6 gap-6">
               <div className="bg-accent flex flex-col gap-2 rounded-lg p-6">
-                <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
-                  <Building2 className="w-6 h-6 text-indigo-600" />
+                <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                  <Building2 className="w-6 h-6 text-red-600" />
                 </div>
                 <h3 className="text-lg font-medium text-foreground mb-2">
                   Witel
@@ -103,8 +103,8 @@ export default function DashboardClientPage({ session }: { session: Session }) {
               </div>
 
               <div className="bg-accent flex flex-col gap-2 rounded-lg p-6">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                  <HouseWifi className="w-6 h-6 text-green-600" />
+                <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                  <HouseWifi className="w-6 h-6 text-red-600" />
                 </div>
                 <h3 className="text-lg font-medium text-foreground mb-2">
                   Datel
@@ -114,8 +114,8 @@ export default function DashboardClientPage({ session }: { session: Session }) {
               </div>
 
               <div className="bg-accent flex flex-col gap-2 rounded-lg p-6">
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                  <RadioTower className="w-6 h-6 text-purple-600" />
+                <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                  <RadioTower className="w-6 h-6 text-red-600" />
                 </div>
                 <h3 className="text-lg font-medium text-foreground mb-2">
                   STO / Site

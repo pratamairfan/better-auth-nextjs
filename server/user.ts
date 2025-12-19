@@ -1,5 +1,7 @@
 "use server";
+
 import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 export const signIn = async (email: string, password: string) => {
   try {
@@ -52,10 +54,10 @@ export const signUp = async (
 };
 
 export const signOut = async () => {
-  await auth.api.signOut();
-
+  const result = await auth.api.signOut({ headers: await headers() });
   return {
     success: true,
     message: "User signed out successfully",
+    data: result,
   };
 };

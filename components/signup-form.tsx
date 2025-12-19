@@ -69,6 +69,7 @@ export function SignupForm({
       router.push("/dashboard");
     } else {
       toast.error(message as string);
+      setIsLoading(false);
     }
   }
   return (

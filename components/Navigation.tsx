@@ -24,7 +24,7 @@ export default function Navigation({ session }: { session: Session | null }) {
       >
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <Radio className="w-5 h-5 text-white" />
             </div>
             <span className="text-xl font-bold ">My SiTO</span>
@@ -34,11 +34,8 @@ export default function Navigation({ session }: { session: Session | null }) {
             <ModeToggle />
             <Link
               href="/"
-              suppressHydrationWarning
               className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                isActive("/")
-                  ? "text-indigo-600 bg-indigo-50"
-                  : "hover:text-indigo-600"
+                isActive("/") ? "text-white bg-primary" : "hover:text-primary"
               }`}
             >
               Home
@@ -47,7 +44,11 @@ export default function Navigation({ session }: { session: Session | null }) {
             {session && (
               <Link
                 href="/dashboard"
-                className="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors"
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  isActive("/dashboard")
+                    ? "text-white bg-primary"
+                    : "hover:text-primary"
+                }`}
               >
                 Dashboard
               </Link>
@@ -55,12 +56,11 @@ export default function Navigation({ session }: { session: Session | null }) {
 
             {!session && (
               <Link
-                href="/auth"
-                suppressHydrationWarning
-                className={`hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  isActive("/auth")
-                    ? "text-indigo-600 bg-indigo-50"
-                    : "hover:text-indigo-600"
+                href="/auth/sign-in"
+                className={`hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  isActive("/auth/sign-in")
+                    ? "text-white bg-primary"
+                    : "hover:text-primary"
                 }`}
               >
                 Sign In
