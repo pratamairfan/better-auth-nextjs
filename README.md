@@ -1,8 +1,16 @@
 <p align="center">
+<a href="https://nextjs.org">
   <img src="https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js" />
+</a>
+<a href="https://react.dev">
   <img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" />
+</a>
+<a href="https://typescriptlang.org">
   <img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+</a>
+<a href="https://tailwindcss.com">
   <img src="https://img.shields.io/badge/Tailwind-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" />
+</a>
 </p>
 
 <h1 align="center">🔐 Better Auth Demo</h1>
