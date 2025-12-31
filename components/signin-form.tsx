@@ -20,7 +20,7 @@ import {
   FormMessage,
 } from "./ui/form";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { string, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -67,7 +67,7 @@ export function SigninForm({
       toast.success(message as string);
       router.push("/dashboard");
     } else {
-      toast.error(message as string);
+      toast.error(message);
       setIsLoading(false);
     }
   }

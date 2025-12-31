@@ -6,6 +6,10 @@ import { nextCookies } from "better-auth/next-js";
 import { schema } from "@/db/schema";
 
 export const auth = betterAuth({
+  session: {
+    expiresIn: 60 * 60, // 1 jam dalam detik (3600 detik)
+    updateAge: 60, // Perbarui session setiap 1 menit jika user aktif
+  },
   emailAndPassword: {
     enabled: true,
   },
