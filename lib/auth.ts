@@ -7,8 +7,9 @@ import { schema } from "@/db/schema";
 
 export const auth = betterAuth({
   session: {
-    expiresIn: 60 * 60, // 1 jam dalam detik (3600 detik)
-    updateAge: 60, // Perbarui session setiap 1 menit jika user aktif
+    expiresIn: 60 * 60,
+    updateAge: 60 * 5,
+    freshAge: 0,
   },
   emailAndPassword: {
     enabled: true,
