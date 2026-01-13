@@ -17,9 +17,10 @@ import {
   SidebarContent,
   SidebarHeader,
 } from "@/components/ui/sidebar";
-import { createAuthClient } from "better-auth/react";
 
-const { useSession } = createAuthClient();
+import { authClient } from "@/lib/auth-client";
+
+const { useSession } = authClient;
 
 // This is sample data.
 const data = {

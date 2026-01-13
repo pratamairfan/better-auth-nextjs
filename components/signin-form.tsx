@@ -65,6 +65,7 @@ export function SigninForm({
 
     if (success) {
       toast.success(message as string);
+      router.refresh();
       router.push("/dashboard");
     } else {
       toast.error(message);
@@ -136,7 +137,7 @@ export function SigninForm({
                         />
                         <Link
                           className="text-sm underline-offset-4 hover:underline hover:text-primary"
-                          href="/forgot-password"
+                          href="/auth/forgot-password"
                         >
                           Forgot your password?
                         </Link>

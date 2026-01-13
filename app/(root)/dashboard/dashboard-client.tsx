@@ -1,5 +1,5 @@
 "use client";
-import { auth } from "@/lib/auth";
+import type { auth } from "@/lib/auth";
 import Maps from "./maps";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import {
@@ -23,7 +23,7 @@ export default function DashboardClientPage({ session }: { session: Session }) {
           <div className="bg-background rounded-lg shadow p-6">
             <div className="flex justify-between items-start mb-6">
               <div>
-                <h2 className="text-2xl font-bold text-accent-foreground mb-2">
+                <h2 className="text-2xl font-bold text-accent-foreground mb-2 capitalize">
                   Hi, {user.name}! 👋🏼
                 </h2>
                 <p className="text-gray-400">Welcome to dashboard</p>

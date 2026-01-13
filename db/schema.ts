@@ -93,9 +93,95 @@ export const accountRelations = relations(account, ({ one }) => ({
   }),
 }));
 
+// Site Management Tables
+export const witel = pgTable("witel", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  code: text("code").notNull().unique(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => new Date())
+    .notNull(),
+});
+
+export const datel = pgTable(
+  "datel",
+  {
+    id: text("id").primaryKey(),
+    name: text("name").notNull(),
+    code: text("code").notNull().unique(),
+    witelId: text("witel_id")
+      .notNull()
+      .references(() => witel.id, { onDelete: "cascade" }),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at")
+      .defaultNow()
+      .$onUpdate(() => new Date())
+      .notNull(),
+  },
+  (table) => [index("datel_witelId_idx").on(table.witelId)]
+);
+
+export const site = pgTable(
+  "site",
+  {
+    id: text("id").primaryKey(),
+    name: text("name").notNull(),
+    code: text("code").notNull().unique(),
+    witelId: text("witel_id")
+      .notNull()
+      .references(() => witel.id, { onDelete: "cascade" }),
+    datelId: text("datel_id")
+      .notNull()
+      .references(() => datel.id, { onDelete: "cascade" }),
+    location: text("location").notNull(),
+    latitude: text("latitude"),
+    longitude: text("longitude"),
+    status: text("status").notNull().default("Active"), // "Active" | "Inactive"
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at")
+      .defaultNow()
+      .$onUpdate(() => new Date())
+      .notNull(),
+  },
+  (table) => [
+    index("site_witelId_idx").on(table.witelId),
+    index("site_datelId_idx").on(table.datelId),
+  ]
+);
+
+// Site Relations
+export const witelRelations = relations(witel, ({ many }) => ({
+  datels: many(datel),
+  sites: many(site),
+}));
+
+export const datelRelations = relations(datel, ({ one, many }) => ({
+  witel: one(witel, {
+    fields: [datel.witelId],
+    references: [witel.id],
+  }),
+  sites: many(site),
+}));
+
+export const siteRelations = relations(site, ({ one }) => ({
+  witel: one(witel, {
+    fields: [site.witelId],
+    references: [witel.id],
+  }),
+  datel: one(datel, {
+    fields: [site.datelId],
+    references: [datel.id],
+  }),
+}));
+
 export const schema = {
   user,
   session,
   account,
   verification,
+  witel,
+  datel,
+  site,
 };

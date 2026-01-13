@@ -4,6 +4,7 @@ import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { db } from "@/db/drizzle";
 import { nextCookies } from "better-auth/next-js";
 import { schema } from "@/db/schema";
+import { sendResetPasswordEmail } from "@/lib/email";
 
 export const auth = betterAuth({
   session: {
@@ -13,6 +14,16 @@ export const auth = betterAuth({
   },
   emailAndPassword: {
     enabled: true,
+    sendResetPassword: async ({ user, url }) => {
+      // Send reset password email to user
+      // Using void to avoid awaiting (prevents timing attacks)
+      void sendResetPasswordEmail(user.email, url);
+    },
+    resetPasswordTokenExpiresIn: 3600, // 1 hour in seconds
+    onPasswordReset: async ({ user }) => {
+      // Log password reset for security/analytics
+      console.log(`✅ Password reset successful for user: ${user.email}`);
+    },
   },
   database: drizzleAdapter(db, {
     provider: "pg",

@@ -8,6 +8,13 @@
       "when": 1765602636467,
       "tag": "0000_loud_catseye",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1768145692135,
+      "tag": "0001_whole_abomination",
+      "breakpoints": true
     }
   ]
 }

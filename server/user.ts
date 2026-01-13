@@ -2,6 +2,7 @@
 
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import { refresh } from "next/cache";
 
 export const signIn = async (email: string, password: string) => {
   try {
@@ -10,8 +11,10 @@ export const signIn = async (email: string, password: string) => {
         email,
         password,
       },
+      headers: await headers(),
     });
 
+    refresh();
     return {
       success: true,
       message: "User signed in successfully",
@@ -39,7 +42,9 @@ export const signUp = async (
         email,
         password,
       },
+      headers: await headers(),
     });
+    refresh();
     return {
       success: true,
       message: "User signed up successfully",
@@ -55,9 +60,36 @@ export const signUp = async (
 
 export const signOut = async () => {
   const result = await auth.api.signOut({ headers: await headers() });
+  refresh();
   return {
     success: true,
     message: "User signed out successfully",
     data: result,
   };
+};
+
+export const requestPasswordReset = async (email: string) => {
+  const result = await auth.api.requestPasswordReset({
+    body: {
+      email,
+      redirectTo: `${
+        process.env.NEXT_PUBLIC_APP_URL ||
+        process.env.BETTER_AUTH_URL ||
+        "http://localhost:3000"
+      }/auth/reset-password`,
+    },
+  });
+
+  return result;
+};
+
+export const resetPassword = async (token: string, newPassword: string) => {
+  const result = await auth.api.resetPassword({
+    body: {
+      token,
+      newPassword,
+    },
+  });
+
+  return result;
 };

@@ -35,7 +35,7 @@ export default async function Home() {
               </Link>
               <Link
                 href="/dashboard"
-                className="inline-flex items-center px-6 py-3 border border-background text-base font-medium rounded-lg text-foreground bg-background hover:bg-accent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
+                className="inline-flex items-center px-6 py-3 border border-background text-base font-medium rounded-lg text-white bg-linear-to-t from-blue-600 to-blue-950 hover:bg-linear-to-t hover:from-blue-800 hover:to-blue-950 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
               >
                 View Dashboard
               </Link>

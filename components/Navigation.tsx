@@ -57,7 +57,7 @@ export default function Navigation({ session }: { session: Session | null }) {
             {!session && (
               <Link
                 href="/auth/sign-in"
-                className={`hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                   isActive("/auth/sign-in")
                     ? "text-white bg-primary"
                     : "hover:text-primary"

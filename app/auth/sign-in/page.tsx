@@ -1,22 +1,37 @@
 import { RadioIcon } from "lucide-react";
-import Link from "next/link";
 import { SigninForm } from "@/components/signin-form";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
+import Link from "next/link";
+import Navigation from "@/components/Navigation";
 
-export default function LoginPage() {
+export default async function LoginPage() {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  if (session) {
+    redirect("/dashboard");
+  }
+
   return (
-    <div className="bg-muted flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
-      <div className="flex w-full max-w-sm flex-col gap-6">
-        <Link
-          href="/"
-          className="flex items-center gap-2 self-center font-medium"
-        >
-          <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
-            <RadioIcon className="size-4" />
-          </div>
-          My SiTO
-        </Link>
-        <SigninForm />
+    <>
+      <Navigation session={session} />
+      <div className="bg-muted flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
+        <div className="flex w-full max-w-sm flex-col gap-6">
+          <Link
+            href="/"
+            className="flex items-center gap-2 self-center font-medium"
+          >
+            <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
+              <RadioIcon className="size-4" />
+            </div>
+            My SiTO
+          </Link>
+          <SigninForm />
+        </div>
       </div>
-    </div>
+    </>
   );
 }

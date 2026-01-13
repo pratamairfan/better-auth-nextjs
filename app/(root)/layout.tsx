@@ -6,6 +6,12 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { Separator } from "@/components/ui/separator";
 import { DynamicBreadcrumb } from "@/components/dynamic-breadcrumb";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "My Sito",
+  description: "Inventory Site & STO",
+};
 
 type RootLayoutProps = {
   children: React.ReactNode;
@@ -19,7 +25,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       <Navigation session={session} />
       <SidebarProvider>
-        <AppSidebar />
+        <AppSidebar session={session} />
         <main className="w-full">
           <header className="flex sticky shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
             <div className="flex items-center gap-2 px-4">

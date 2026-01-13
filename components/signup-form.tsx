@@ -66,6 +66,7 @@ export function SignupForm({
 
     if (success) {
       toast.success(message as string);
+      router.refresh();
       router.push("/dashboard");
     } else {
       toast.error(message as string);
